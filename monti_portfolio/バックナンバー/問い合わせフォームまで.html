@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>動画ポートフォリオ</title>
+
+  <style>　スタイルここから！！
+    body {
+      margin: 0;
+      background: white;
+      font-family: sans-serif;
+      color: black;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    .about {
+      background-color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .about-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .about-image {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .about-image img {
+      width: 600px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .services {
+      background-color: #f9f9f9;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .service-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .services h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ← 2列に固定！ */
+  gap: 40px;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr; /* ← スマホ時は1列に */
+  }
+}
+
+
+    .service-card {
+      background: #fff;
+      color: #000;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+   .service-card img {
+  width: 100%;
+  height: 248px; /* ← 好きな高さにしてもOK（180〜240pxがおすすめ） */
+  object-fit: cover; /* ← 上下クロップ対策の主役！ */
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-section {
+      background-color: #f4f4f6;
+      color: #111;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .price-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .price-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+    }
+
+    .price-card {
+      background-color: #fff;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .price-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .price-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #007BFF;
+    }
+
+    .note {
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+
+.video-plans {
+  background-color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.plan-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-plans h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+}
+
+.plan-card {
+  background-color: #f9f9f9;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  text-align: left;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+}
+
+.plan-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.plan-card .price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #007BFF;
+  margin-bottom: 0.5rem;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.contact {
+  background: #f9f9f9;
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.contact-wrapper {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.contact p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #444;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: sans-serif;
+}
+
+.contact-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form button {
+  padding: 14px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #333;
+}
+
+　スタイルおわり！！
+  </style>
+
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="bg-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <h1>ヴィジョンラボ</h1>
+      <p>映像であなたのヴィジョンをカタチに</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="about-container">
+      <h2>ヴィジョンラボとは</h2>
+      <div class="about-image">
+        <img src="pic1.jpg" alt="ヴィジョンラボイメージ">
+      </div>
+      <p>
+        SNSが広く浸透した今、動画を活用したプロモーションは<br>
+企業・個人を問わず欠かせない手段となっています。<br>
+        しかし、制作会社への依頼は高額になりがちで、<br>
+初めての方にとってはハードルが高いのも事実です。<br>
+        「ヴィジョンラボ」では、わかりやすい料金体系と丁寧なヒアリングをもとに、<br>
+        あなたの想いや魅力を映像というカタチにしてお届けします。
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+ <section class="services">
+  <div class="service-container">
+    <h2>サービス紹介</h2>
+
+    <div class="card-grid">
+      <div class="service-card">
+        <img src="1.png" alt="ディレクション">
+        <h3>ディレクション</h3>
+        <p>ヒアリングをもとに、目的やターゲットに合わせた<br>構成や企画を提案。<br>
+        初めてでも安心して任せられる、柔軟で丁寧な進行を<br>心がけています。</p>
+      </div>
+
+      <div class="service-card">
+        <img src="2.png" alt="編集">
+        <h3>編集</h3>
+        <p>テロップ・BGM・カット構成など、目的に合わせて魅せる編集を行います。<br>
+        スピード重視の納品から、じっくり作り込む仕上げまで対応可能です。</p>
+      </div>
+
+      <div class="service-card">
+        <img src="3.png" alt="撮影">
+        <h3>撮影</h3>
+        <p>一眼カメラやジンバルなどを使い、<br>雰囲気や質感にこだわった撮影を行います。<br>
+        ライティングや構図もお任せいただけます。</p>
+      </div>
+
+      <div class="service-card">
+        <img src="4.png" alt="活用">
+        <h3>活用</h3>
+        <p>SNS用の書き出しやショートバージョン化、<br>YouTubeへの連携なども対応可能。<br>
+        動画を「作って終わり」にしない、運用視点での提案を行います。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </div>
+</section>
+
+
+  <!-- Price Section -->
+<section class="video-plans">
+  <div class="plan-container">
+    <h2>動画制作プラン一覧</h2>
+    <div class="plan-grid">
+
+      <div class="plan-card">
+        <h3>Starter Plan<br>（スタータープラン）</h3>
+        <p class="price">100,000円〜</p>
+        <ul>
+          <li><strong>撮影:</strong> 〇（半日・1カメ）</li>
+          <li><strong>編集:</strong> 〇（簡易）</li>
+          <li><strong>構成相談:</strong> 〇（事前ヒアリング）</li>
+        </ul>
+        <p class="detail">初めて動画を作る方におすすめの、撮影から編集までを気軽に頼めるプランです。</p>
+        <p class="example">活用例：店舗紹介・商品紹介・サービス紹介などに最適です。</p>
+      </div>
+
+      <div class="plan-card">
+        <h3>Edit Plan<br>（編集プラン）</h3>
+        <p class="price">30,000円〜</p>
+        <ul>
+          <li><strong>撮影:</strong> ×</li>
+          <li><strong>編集:</strong> 〇</li>
+          <li><strong>構成相談:</strong> ×</li>
+        </ul>
+        <p class="detail">撮影済みの素材をもとに、テロップや音楽付きで仕上げたい方に最適です。</p>
+        <p class="example">活用例：YouTube動画、結婚式のオープニングムービーなど。</p>
+      </div>
+
+      <div class="plan-card">
+        <h3>Full Support Plan<br>（フルサポートプラン）</h3>
+        <p class="price">200,000円〜</p>
+        <ul>
+          <li><strong>撮影:</strong> 〇（1日・1〜2カメ）</li>
+          <li><strong>編集:</strong> 〇（構成・本格編集）</li>
+          <li><strong>構成相談:</strong> 〇</li>
+        </ul>
+        <p class="detail">構成の企画から撮影・編集まで、しっかりサポートする安心プランです。</p>
+        <p class="example">活用例：採用動画、ブランディング映像などしっかり伝えたい内容に。</p>
+      </div>
+
+      <div class="plan-card">
+        <h3>AI活用プラン<br>（特別プラン）</h3>
+        <p class="price">要相談</p>
+        <ul>
+          <li><strong>撮影:</strong> ×</li>
+          <li><strong>編集:</strong> 〇</li>
+          <li><strong>構成相談:</strong> 〇（要ヒアリング）</li>
+        </ul>
+        <p class="detail">生成AIを活用した、他にはない印象的な映像をお求めの方向けのプランです。</p>
+        <p class="example">活用例：世界観のある映像、コンセプト動画、SNS映え素材など。</p>
+      </div>
+
+<!-- ここで video-plans セクション閉じる -->
+</section>
+
+<!-- 🔽 正しく中央に配置されるお問い合わせフォーム -->
+<section class="contact">
+  <div class="contact-wrapper">
+    <h2>お問い合わせ</h2>
+    <p>ご依頼・ご相談など、お気軽にご連絡ください。</p>
+    <form class="contact-form">
+      <input type="text" name="name" placeholder="お名前" required>
+      <input type="email" name="email" placeholder="メールアドレス" required>
+      <textarea name="message" placeholder="お問い合わせ内容" required></textarea>
+      <button type="submit">送信する</button>
+    </form>
+  </div>
+</section>
+
+  </div>
+</section>
+
+    </div>
+  </div>
+</section>
+
+    </div>
+  </div>
+</section>
+
+
+</body>
+</html>
